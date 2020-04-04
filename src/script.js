@@ -22,23 +22,42 @@ const arrayOfEnglishKeyboard = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9'
     'Ctrl', 'Win', 'Alt', '', 'Alt', 'Ctrl', '⯇', '▼', '⯈',
 ]
 
-const LockedButtons = ["AltLeft", "AltRight", "CapsLock", "ControlLeft", "ControlRight", "Enter", "MetaLeft", "MetaRight", "ShiftLeft", "ShiftRight", "Tab",
+
+const LockedButtonsForKeydown = ["AltLeft", "AltRight", "CapsLock", "ControlLeft", "ControlRight", "Enter", "MetaLeft", "MetaRight", "ShiftLeft", "ShiftRight", "Tab",
     "End", "Help", "Home", "Insert", "PageDown", "PageUp", "NumLock", "Numpad0", "Numpad1", "Numpad2", "Numpad3", "Numpad4", "Numpad5",
     "Numpad6", "Numpad7", "Numpad8", "Numpad9", "NumpadAdd", "NumpadBackspace", "NumpadClear", "NumpadClearEntry", "NumpadComma", "NumpadDecimal",
     "NumpadDivide", "NumpadEnter", "NumpadEqual", "NumpadHash", "NumpadMemoryAdd", "NumpadMemoryClear", "NumpadMemoryRecall", "NumpadMemoryStore",
     "NumpadMemorySubtract", "NumpadMultiply", "NumpadParenLeft", "NumpadParenRight", "NumpadStar", "NumpadSubtract", "Escape", "F1", "F2", "F3",
     "F4", "F4", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "Fn", "FnLock", "PrintScreen", "ScrollLock", "Pause", "Backspace", "Delete"
 ]
+const LockedButtonsForClick = ['Backspace', 'Tab', 'Del', 'Caps Lock', 'Enter', 'Shift', 'Shift ', 'Ctrl', 'Win', 'Alt'];
 
 const arrayOfSpecials = ['Backspace', 'Tab', 'Del', 'Caps Lock', 'Enter', 'Shift', 'Shift ', 'Ctrl', 'Win', 'Alt'];
 
+const arrayOfKeyCodes = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace',
+    'Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete',
+    'CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter',
+    'ShiftLeft', 'Backslash', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight',
+    'ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight'
+]
+
+
+
 let arrayOfGeneratedButtons = [];
+
+const h1 = document.createElement('h1');
+document.body.append(h1);
+h1.innerHTML = 'RSS Virtual Keyboard';
+h1.style.cssText = `color:#0083D0;
+text-align:center;
+`;
+
 
 const input = document.createElement('textarea');
 document.body.append(input);
 
 input.style.cssText = `width:720px;
-height:320px;
+height:220px;
 font-family: 'Roboto', sans-serif;
 margin-bottom:10px;
 font-weight:500;
@@ -75,6 +94,7 @@ class KeyboardButton {
                 this._elem.style.width = '99px';
                 this._elem.style.backgroundColor = '#222222';
                 this._elem.style.fontWeight = '700';
+                this._elem.classList.add('Caps');
                 break;
             case 'Tab':
                 this._elem.style.width = '51px';
@@ -192,6 +212,26 @@ for (let i = 0; i < currentLanguage.length; i++) {
     else tr[4].append(temp.getButton);
 }
 
+let infoAboutOS = document.createElement('p');
+document.body.append(infoAboutOS);
+infoAboutOS.innerHTML = 'This keyboard is created in the operating system \'Windows\'';
+infoAboutOS.style.cssText = `color:#000E0D;
+font-family: 'Roboto', sans-serif;
+        font-size:18px;
+        font-weight:700; 
+text-align:center;
+`;
+let infoAboutChangingLanguage = document.createElement('p');
+document.body.append(infoAboutChangingLanguage);
+infoAboutChangingLanguage.innerHTML = 'To switch layout, use: Shift + Alt';
+infoAboutChangingLanguage.style.cssText = `color:#000E0D;
+font-family: 'Roboto', sans-serif;
+font-size:18px; 
+font-weight:700;
+text-align:center;
+`;
+
+
 document.addEventListener('keydown', (event) => {
     let isClickOnLockedButton = false;
     let isButtonSpecial;
@@ -226,8 +266,8 @@ document.addEventListener('keydown', (event) => {
         }
 
     } else {
-        for (let i = 0; i < LockedButtons.length; i++) {
-            if (event.code == LockedButtons[i]) isClickOnLockedButton = true;
+        for (let i = 0; i < LockedButtonsForKeydown.length; i++) {
+            if (event.code == LockedButtonsForKeydown[i]) isClickOnLockedButton = true;
         }
         if (isClickOnLockedButton == false) input.value += event.key;
 
@@ -356,47 +396,34 @@ document.addEventListener('keydown', (event) => {
             }
         }
     }
-    /*  for (let i = 0; i < arrayOfGeneratedButtons.length; i++) {
-         let result = "";
-         if (arrayOfGeneratedButtons[i].innerHTML == '1' || arrayOfGeneratedButtons[i].innerHTML == '2' || arrayOfGeneratedButtons[i].innerHTML == '3' ||
-             arrayOfGeneratedButtons[i].innerHTML == '4' || arrayOfGeneratedButtons[i].innerHTML == '5' || arrayOfGeneratedButtons[i].innerHTML == '6' ||
-             arrayOfGeneratedButtons[i].innerHTML == '7' || arrayOfGeneratedButtons[i].innerHTML == '8' || arrayOfGeneratedButtons[i].innerHTML == '9' ||
-             arrayOfGeneratedButtons[i].innerHTML == '0') result += "Digit" + arrayOfGeneratedButtons[i].innerHTML;
-         else {
-             switch (arrayOfGeneratedButtons[i].innerHTML) {
-                 case 'ё':
-                     result += "Backquote";
-                     break;
-                 case '-':
-                     result += 'Minus';
-                     break;
-                 case '=':
-                     result += 'Equal';
-                     break;
-                 case '\\':
-                     result += 'Backslash';
-                     break;
-                 case 'х':
-                     result += "BracketLeft";
-                     break;
-                 case 'ъ':
-                     result += "BracketRight";
-                     break;
+    let NumberOfCode = 0;
+    let keyDownEvent;
+    for (let i = 0; i < arrayOfKeyCodes.length; i++) {
+        if (event.code === arrayOfKeyCodes[i]) {
+            arrayOfGeneratedButtons[NumberOfCode].style.backgroundColor = '#6F22E2';
+            arrayOfGeneratedButtons[NumberOfCode].style.borderRadius = '20px';
+            keyDownEvent = arrayOfGeneratedButtons[NumberOfCode];
+            break;
+        } else NumberOfCode++;
+    }
 
 
-
-
-                 default:
-                     break;
-             }
-         }
-
-         if (event.code == result) arrayOfGeneratedButtons[i].classList.add('highlight'); */
-    /*   } */
+    document.addEventListener('keyup', (event) => {
+        if (event.key == 'Shift' && event.key != 'Alt') {
+            for (let i = 0; i < arrayOfGeneratedButtons.length; i++) {
+                arrayOfGeneratedButtons[i].innerHTML = localStorage.currentKeyboard == 'ё' ? arrayOfRussianKeyboard[i] : arrayOfEnglishKeyboard[i];
+            }
+        }
+        keyDownEvent.style.borderRadius = '5px';
+        if (keyDownEvent.classList.contains('special')) keyDownEvent.style.backgroundColor = '#222222';
+        else keyDownEvent.style.backgroundColor = '#444444';
+    });
 });
-document.addEventListener('keyup', (event) => {
 
-});
+
+
+
+
 
 Newtable.addEventListener('mouseover', (event) => {
     if (event.target.classList.contains('button')) event.target.style.backgroundColor = '#E67F02';
@@ -412,15 +439,50 @@ Newtable.addEventListener('mouseout', (event) => {
 let mousedownEvent;
 
 Newtable.addEventListener('mousedown', (event) => {
+    let isItLockedButton = false;
     event.preventDefault();
     if (event.target.classList.contains('button')) {
-        event.target.style.borderRadius = '20px';
-        event.target.style.backgroundColor = '#6F22E2';
-        mousedownEvent = event.target;
+        if (event.target.classList.contains('Caps')) {
+            if (event.target.style.borderRadius == '5px') {
+                event.target.style.borderRadius = '20px';
+                event.target.style.backgroundColor = '#6F22E2';
+                for (let i = 0; i < arrayOfGeneratedButtons.length; i++) {
+                    isButtonSpecial = false;
+                    for (let j = 0; j < arrayOfSpecials.length; j++) {
+                        if (arrayOfGeneratedButtons[i].innerHTML == arrayOfSpecials[j]) isButtonSpecial = true;
+                    }
+                    if (!isButtonSpecial) {
+                        arrayOfGeneratedButtons[i].innerHTML = arrayOfGeneratedButtons[i].innerHTML.toUpperCase();
+                    }
+                }
+            } else {
+                event.target.style.borderRadius = '5px';
+                event.target.style.backgroundColor = '#222222';
+                for (let i = 0; i < arrayOfGeneratedButtons.length; i++) {
+                    arrayOfGeneratedButtons[i].innerHTML = localStorage.currentKeyboard == 'ё' ? arrayOfRussianKeyboard[i] : arrayOfEnglishKeyboard[i];
+                }
+            }
+        } else {
+            event.target.style.borderRadius = '20px';
+            event.target.style.backgroundColor = '#6F22E2';
+            mousedownEvent = event.target;
+            for (let i = 0; i < LockedButtonsForClick.length; i++) {
+                if (event.target.innerHTML == LockedButtonsForClick[i]) isItLockedButton = true;
+            }
+            if (isItLockedButton == false) input.value += event.target.innerHTML;
+            if (event.target.innerHTML == 'Backspace') input.value = input.value.slice(0, input.value.length - 1);
+            if (event.target.innerHTML == 'Tab') input.value += '    ';
+            if (event.target.innerHTML == 'Enter') input.value += '\n';
+            if (event.target.innerHTML == '') input.value += ' ';
+        }
     }
+
+
     document.addEventListener('mouseup', (event) => {
-        mousedownEvent.style.borderRadius = '5px';
-        if (mousedownEvent.classList.contains('special')) mousedownEvent.style.backgroundColor = '#222222';
-        else mousedownEvent.style.backgroundColor = '#444444';
+        if (!event.target.classList.contains('Caps')) {
+            mousedownEvent.style.borderRadius = '5px';
+            if (mousedownEvent.classList.contains('special')) mousedownEvent.style.backgroundColor = '#222222';
+            else mousedownEvent.style.backgroundColor = '#444444';
+        }
     })
 });
