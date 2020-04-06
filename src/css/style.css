@@ -1,0 +1,90 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #0083D0;
+    text-align: center;
+}
+
+.input {
+    width: 720px;
+    height: 220px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.button {
+    width: 40px;
+    height: 40px;
+    background-color: #444444;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    border-radius: 5px;
+    display: inline;
+    margin-bottom: 11px;
+    font-weight: 400;
+    transition: all ease 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.special {
+    background-color: #222222;
+    font-weight: 700;
+}
+
+.Caps {
+    width: 99px;
+}
+
+.Shift {
+    width: 99px;
+}
+
+.table {
+    width: 100%;
+    transition: all ease 0.2s;
+    background-color: #888888;
+    border: 3px solid black;
+    padding: 10px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.tr {
+    display: flex;
+    justify-content: space-between;
+}
+
+.infoAboutOS {
+    color: #000E0D;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.infoAboutChangingLanguage {
+    color: #000E0D;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.highlight {
+    border-radius: 20px !important;
+    background-color: #6F22E2 !important;
+}
+
+.mouseover {
+    background-color: #E67F02;
+}
