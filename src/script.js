@@ -379,14 +379,16 @@ Newtable.addEventListener('mousedown', (event) => {
 
 
   Document.addEventListener('mouseup', () => {
-    if(mousedownEvent !== undefined){
-    if (!mousedownEvent.classList.contains('Caps')) {
-      mousedownEvent.classList.remove('highlight');
-      for (let i = 0; i < arrayOfKeysPressed.length; i += 1) {
-        if (mousedownEvent.innerHTML === arrayOfKeysPressed[i][0]) arrayOfKeysPressed.splice(i, 1);
+    if (mousedownEvent !== undefined) {
+      if (!mousedownEvent.classList.contains('Caps')) {
+        mousedownEvent.classList.remove('highlight');
+        for (let i = 0; i < arrayOfKeysPressed.length; i += 1) {
+          if (mousedownEvent.innerHTML === arrayOfKeysPressed[i][0]) {
+            arrayOfKeysPressed.splice(i, 1);
+          }
+        }
+        if (mousedownEvent.innerHTML === 'Shift') lettersDown();
       }
-      if (mousedownEvent.innerHTML === 'Shift') lettersDown();
     }
-  }
   });
 });
