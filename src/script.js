@@ -350,6 +350,7 @@ Newtable.addEventListener('mousedown', (event) => {
   event.preventDefault();
   if (event.target.classList.contains('button')) {
     if (event.target.classList.contains('Caps')) {
+      mousedownEvent = event.target;
       event.target.classList.toggle('highlight');
       if (event.target.classList.contains('Caps') && event.target.classList.contains('highlight')) capsUpper();
       else lettersDown();
@@ -378,6 +379,7 @@ Newtable.addEventListener('mousedown', (event) => {
 
 
   Document.addEventListener('mouseup', () => {
+    if(mousedownEvent.classList.contains('button')){
     if (!mousedownEvent.classList.contains('Caps')) {
       mousedownEvent.classList.remove('highlight');
       for (let i = 0; i < arrayOfKeysPressed.length; i += 1) {
@@ -385,5 +387,6 @@ Newtable.addEventListener('mousedown', (event) => {
       }
       if (mousedownEvent.innerHTML === 'Shift') lettersDown();
     }
+  }
   });
 });
