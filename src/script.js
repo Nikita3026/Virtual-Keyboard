@@ -379,7 +379,7 @@ Newtable.addEventListener('mousedown', (event) => {
 
 
   Document.addEventListener('mouseup', () => {
-    if(mousedownEvent.classList.contains('button')){
+    if(mousedownEvent !== undefined){
     if (!mousedownEvent.classList.contains('Caps')) {
       mousedownEvent.classList.remove('highlight');
       for (let i = 0; i < arrayOfKeysPressed.length; i += 1) {
