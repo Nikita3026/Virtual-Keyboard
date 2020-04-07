@@ -5,7 +5,9 @@
     "main": "index.js",
     "scripts": {
         "lint": "eslint ./src",
-        "lint:fix": "eslint ./src --fix"
+        "lint:fix": "eslint ./src --fix",
+        "predeploy": "npm build",
+        "deploy": "gh-pages -d src"
     },
     "repository": {
         "type": "git",
@@ -17,10 +19,11 @@
     "bugs": {
         "url": "https://github.com/Nikita3026/Virtual-Keyboard/issues"
     },
-    "homepage": "https://github.com/Nikita3026/Virtual-Keyboard#readme",
+    "homepage": "https://Nikita3026.github.io/Virtual-Keyboard",
     "devDependencies": {
         "eslint": "^6.8.0",
         "eslint-config-airbnb": "^18.1.0",
-        "eslint-plugin-import": "^2.20.2"
+        "eslint-plugin-import": "^2.20.2",
+        "gh-pages": "^2.2.0"
     }
 }
